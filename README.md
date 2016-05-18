@@ -82,7 +82,7 @@ var form1_input = [
             type: "text",
             name: "withaddon2",
             label: "With left-hand button dropdown addon",
-            addons": 
+            addons: 
                 [
                     {
                         type: "button",
@@ -101,7 +101,7 @@ var form1_input = [
             name: "withaddon2",
             label: "With right-hand button and dropdown addon",
             "help-block": "Help-block: note that the alignment of the dropdown itself is adjusted",
-            addons": 
+            addons: 
                 [
                     {
                         type: "button",
@@ -126,7 +126,7 @@ var form1_input = [
             name: "radiogrp",
             value: "no",
             label: "A radiobutton group (with additions, an experimental feature)",
-            options":
+            options:
             {
                 no: "Yes, option 1, with 1 additional field",
                 yes: "No, option 2, with 2 additional fields"
