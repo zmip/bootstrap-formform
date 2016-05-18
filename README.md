@@ -10,6 +10,7 @@ This is a complete rewrite of [cbergmiller's formform](https://github.com/cbergm
  * dropdowns
  * radiogroups
  * help-blocks
+ * placeholders
  * `.has-error` validation class
 * support for IE8 (needs more testing)
 * render multiple forms
