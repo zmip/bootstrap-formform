@@ -320,10 +320,10 @@ var FormForm = (function () {
 	{
 		if ( ! this.itemData.type ) this.elem = $('<input type="text">');
 		else this.elem = $('<input type="'+this.itemData.type+'">');
-
-		// set value
-		if ( this.itemData.value ) this.elem.val( this.itemData.value );
 		
+		// set value
+		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
+				
 		// create addons/group
 		if ( this.itemData.addons && this.elem.attr( 'type' ) == 'text' ) return this.createAddons();
 		else return this.createGroup();
@@ -380,7 +380,7 @@ var FormForm = (function () {
 		this.elem.append( options );
 		
 		// set value
-		if ( this.itemData.value ) this.elem.val( this.itemData.value );
+		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
 		
 		return this.createGroup();
 	}
@@ -392,7 +392,7 @@ var FormForm = (function () {
 		Element.call( this, itemData ); // call parent constructor
 
 		// overrides
-		this.elem = $('<button type="button">');
+		this.elem = $('<button>').attr('type', itemData.type);
 		this.nohelp = true;
 		this.classes = ['btn'];
 	}
@@ -458,8 +458,8 @@ var FormForm = (function () {
 	ElementTextarea.prototype.render = function()
 	{
 		// add value
-		if ( this.itemData.value ) this.elem.text( this.itemData.value );
-		
+		if ( typeof this.itemData.value != 'undefined' ) this.elem.text( this.itemData.value );
+
 		return this.createGroup();
 	}
 
@@ -481,7 +481,7 @@ var FormForm = (function () {
 	ElementStatic.prototype.render = function()
 	{
 		// add value
-		if ( this.itemData.value ) this.elem.text( this.itemData.value );
+		if ( typeof this.itemData.value != 'undefined' ) this.elem.text( this.itemData.value );
 		
 		var grp = this.createGroup();
 		
@@ -572,6 +572,9 @@ var FormForm = (function () {
 	{
 		// add attributes
 		this.applyAttributes();
+		
+		// set value
+		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
 
 		return this.elem;
 	}
