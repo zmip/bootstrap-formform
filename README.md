@@ -87,7 +87,7 @@ var form1_input = [
                     {
                         type: "button",
                         label: "Choose...",
-                        dropdown":
+                        dropdown:
                         {
                             id_one12: "Addon dropdown 1",
                             id_two12: "Addon dropdown 2",
@@ -112,7 +112,7 @@ var form1_input = [
                         type: "button",
                         position: "right",
                         label: "",
-                        dropdown":
+                        dropdown:
                         {
                             id_one1: "Addon dropdown 1",
                             id_two1: "Addon dropdown 2",
