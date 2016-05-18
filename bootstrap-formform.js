@@ -572,6 +572,9 @@ var FormForm = (function () {
 	{
 		// add attributes
 		this.applyAttributes();
+		
+		// set value
+		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
 
 		return this.elem;
 	}
