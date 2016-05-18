@@ -137,7 +137,7 @@ var form1_input = [
             name: "addition1",
             id: "addition1",
             classes: "addition",
-            data: "for: "radiogrp_no"},
+            data: {"for": "radiogrp_no"},
             label: "What is the cause of this?",
             value: ""
         },
@@ -146,7 +146,7 @@ var form1_input = [
             name: "addition2",
             id: "addition2",
             classes: "addition",
-            data: "for: "radiogrp_yes"},
+            data: {"for": "radiogrp_yes"},
             label: "How many times in the past six months?",
             value: ""
         },
@@ -155,7 +155,7 @@ var form1_input = [
             name: "addition3",
             id: "addition3",
             classes: "addition",
-            data: "for: "radiogrp_yes"},
+            data: {"for": "radiogrp_yes"},
             label: "Who is responsible for this?",
             value: ""
         },
@@ -241,6 +241,10 @@ var form2 = new FormForm( $('myform2'), form2_input );
 form2.render();
 
 ```
+
+## To do/wishlist
+
+* Improve the file input, which was taken from [Cory LaViska’s example](http://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3/) but is semantically invalid (there should not be an `<input type="file">` within a `<button>`).
 
 ## Options
 
