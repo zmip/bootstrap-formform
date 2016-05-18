@@ -68,7 +68,7 @@ var form1_input = [
             type: "text",
             name: "withaddon",
             label: "With left-hand button addon of class 'btn-warning'",
-            addons": 
+            addons: 
             [
                 {
                 type: "button",
