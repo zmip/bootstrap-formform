@@ -57,7 +57,7 @@ var form1_input = [
         {
             type: "button",
             label: "Button dropdown",
-            dropdown":
+            dropdown:
             { 
                 id_one: "Dropdown option 1",
                 id_two: "Dropdown option 2",
