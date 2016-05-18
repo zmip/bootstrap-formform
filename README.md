@@ -197,7 +197,7 @@ var form1_input = [
             name: "fruit",
             label: "Select input",
             value: "two",
-            options": 
+            options: 
             { 
                 one: "Option 1",
                 two: "This is the selected option",
@@ -247,6 +247,8 @@ form2.render();
 * Improve the file input, which was taken from [Cory LaViska’s example](http://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3/) but is semantically invalid (there should not be an `<input type="file">` within a `<button>`).
 
 ## Options
+
+See formform_demo.html for all currently supported options.
 
 ### Horizontal forms
 
