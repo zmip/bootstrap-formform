@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>FormForm2 demo</title>
+	
+<!-- Bootstrap core CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Bootstrap core JS dependencies -->
+<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- Bootstrap FormForm -->
+<script src="bootstrap-formform.js"></script>
+
+<script>
+	
+	$(document).on('change', '.btn-file :file', function() {
+		var input = $(this);
+		var filename = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger( 'fileselect', [filename] );
+		} );
+
+	$(document).ready( function() {
+	
+
+		input = [
+		{
+			"name": "username",
+			"label": "With placeholder and unspecified type",
+			"placeholder": "This is a placeholder"
+		},
+		{
+			"type": "button",
+			"label": "Primary",
+			"classes": "btn-primary"
+		},
+		{
+			"type": "button",
+			"label": "Info",
+			"classes": "btn-info"
+		},
+		{
+			"type": "button",
+			"label": "Success",
+			"classes": "btn-success",
+		},
+		{
+			"type": "button",
+			"label": "Button dropdown",
+			"dropdown":
+			{ 
+				"id_one": "Dropdown option 1",
+				"id_two": "Dropdown option 2",
+				"id_three": "Dropdown option 3"
+			}
+		},
+		{
+			"type": "text",
+			"name": "withaddon",
+			"label": "With left-hand button addon of class 'btn-warning'",
+			"addons": 
+			[
+				{
+				"type": "button",
+				"classes": "btn-warning",
+				"label": "OK",
+				"icon": "ok"
+				}
+			]
+		},
+		{
+			"type": "text",
+			"name": "withaddon2",
+			"label": "With left-hand button dropdown addon",
+			"addons": 
+				[
+					{
+						"type": "button",
+						"label": "Choose...",
+						"dropdown":
+						{
+							"id_one12": "Addon dropdown 1",
+							"id_two12": "Addon dropdown 2",
+							"id_three12": "Addon dropdown 3"
+						}
+					}
+				]
+		},
+		{
+			"type": "text",
+			"name": "withaddon2",
+			"label": "With right-hand button and dropdown addon",
+			"help-block": "Help-block: note that the alignment of the dropdown itself is adjusted",
+			"addons": 
+				[
+					{
+						"type": "button",
+						"position": "right",
+						"label": "OK",
+					},
+					{
+						"type": "button",
+						"position": "right",
+						"label": "",
+						"dropdown":
+						{
+							"id_one1": "Addon dropdown 1",
+							"id_two1": "Addon dropdown 2",
+							"id_three1": "Addon dropdown 3"
+						}
+					}
+				]
+		},
+		{
+			"type": "radiogroup",
+			"name": "radiogrp",
+			"value": "no",
+			"label": "A radiobutton group (with additions, an experimental feature)",
+			"options":
+			{
+				"no": "Yes, option 1, with 1 additional field",
+				"yes": "No, option 2, with 2 additional fields"
+			}
+		},
+		{
+			"type": "text",
+			"name": "addition1",
+			"id": "addition1",
+			"classes": "addition",
+			"data": {"for": "radiogrp_no"},
+			"label": "What is the cause of this?",
+			"value": ""
+		},
+		{
+			"type": "text",
+			"name": "addition2",
+			"id": "addition2",
+			"classes": "addition",
+			"data": {"for": "radiogrp_yes"},
+			"label": "How many times in the past six months?",
+			"value": ""
+		},
+		{
+			"type": "text",
+			"name": "addition3",
+			"id": "addition3",
+			"classes": "addition",
+			"data": {"for": "radiogrp_yes"},
+			"label": "Who is responsible for this?",
+			"value": ""
+		},
+		{
+			"type": "text",
+			"name": "withValue",
+			"label": "With value and error",
+			"value": "This is a value with <unsafe> \"characters\" & such",
+			"error": "This is the error message"
+		},
+		{
+			"type": "password",
+			"name": "password",
+			"label": "Password label with <unsafe> \"characters\""
+		},
+		{
+			"type": "textarea",
+			"name": "my_textarea",
+			"label": "A textarea with placeholder and value",
+			"value": "Remove this text to see the placeholder",
+			"placeholder": "This is a placeholder"
+		},
+		{
+			"type": "file",
+			"name": "file_upload",
+			"label": "A file input",
+			"btnlabel": "Choose a file...",
+			"icon": "file",
+			"classes": "btn-primary"
+		},
+		{
+			"type": "static",
+			"name": "static",
+			"label": "Bootstrap 'static' control",
+			"value": "This is static text"
+		},
+		{
+			"type": "select",
+			"name": "fruit",
+			"label": "Select input",
+			"value": "two",
+			"options": 
+			{ 
+				"one": "Option 1",
+				"two": "This is the selected option",
+				"three": "Option 3"
+			}
+		},
+		{
+			"type": "submit",
+			"label": "Search",
+			"classes": "btn-default",
+			"icon": "search",
+			"id": "test_id",
+			"name": "test_name"
+		}
+		];
+
+		input2 = [
+		{
+			"name": "username",
+			"label": "This is form 2",
+			"placeholder": "This is a placeholder"
+		},
+		{
+			"type": "button",
+			"label": "Cancel",
+			"classes": "btn-default",
+		},
+		{
+			"type": "submit",
+			"label": "OK",
+			"position": "right",
+			"classes": "btn-primary",
+			"icon": "ok"
+		}
+	];
+
+
+	renderForm();
+		
+	} );
+	
+	var form_elem = null;
+	var form_elem2 = null;
+	
+	function renderForm( orientation, addcol1 )
+	{
+	
+		if ( ! form_elem ) form_elem = $('#testform');
+		if ( ! form_elem2 ) form_elem2 = $('#testform2');
+		
+		if ( form_elem.length )
+		{
+			form_elem.empty();
+			if ( orientation == 'h' ) form_elem.addClass( 'form-horizontal' );
+			else form_elem.removeClass( 'form-horizontal' );
+
+			var col1 = Math.min( 9, Math.max( 2, parseInt( $( '#col1' ).text() ) ) );
+			if ( addcol1 )
+			{
+				col1 += addcol1;
+				$( '#col1' ).text( col1 );
+			}
+			
+			// create a FormForm instance
+			var form = new FormForm( form_elem, input );
+			
+			// (optionally) set the column widths (for horizontal forms)
+			form.col1 = col1;
+			form.col2 = 12 - col1;
+			
+			// render
+			form.render();
+		}
+		
+		if ( form_elem2.length )
+		{
+			form_elem2.empty();
+			var form2 = new FormForm( form_elem2, input2 );
+			form2.render();
+		}
+	}
+	
+</script>
+
+<style>
+
+	.container {
+		padding: 20px 35px;
+	}
+	
+</style>
+
+</head>
+<body>
+		
+	<div class="container">
+		
+		<div class="row">
+			<label>Form layout: </label>
+			<button type="button" class="btn btn-default btn-sm" onclick="return renderForm('v')">Vertical <span class="glyphicon glyphicon-arrow-down"></span></button></form>
+			<button type="button" class="btn btn-default btn-sm" onclick="return renderForm('h')">Horizontal <span class="glyphicon glyphicon-arrow-right"></span></button></form>
+			<label>column 1 width: </label>
+			<button type="button" class="btn btn-default btn-sm" onclick="return renderForm('h', -1)"><span class="glyphicon glyphicon-triangle-left"></span></button></form>
+			<span id="col1">4</span>
+			<button type="button" class="btn btn-default btn-sm" onclick="return renderForm('h', 1)"><span class="glyphicon glyphicon-triangle-right"></span></button></form>
+		</div>
+
+		<div class="row">
+			<h1>Bootstrap FormForm2 demo</h1>
+			<form id="testform" action="#" method="post"></form>
+			<form id="testform2" action="#" method="post"></form>
+		</div>
+
+	</div>
+	
+  </body>
+</html>
