@@ -22,7 +22,7 @@ This is a complete rewrite of [cbergmiller's formform](https://github.com/cbergm
 
 ## Example
 
-no online example yet, in progress
+no online example yet, but the formform_demo.html demo file will show what is possible.
 
 ## Dependencies
 
