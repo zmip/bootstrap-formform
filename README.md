@@ -1,10 +1,26 @@
 # Bootstrap-FormForm
 
-Client-side form rendering for Bootstrap 3.
+This is a complete rewrite of [cbergmiller's formform](https://github.com/cbergmiller/bootstrap-formform) JSON to Bootstrap 3 form renderer.
+
+## Changes/differences
+
+* dependency on underscore.js was entirely removed (hence the rewrite)
+* support was added for:
+ * addons
+ * dropdowns
+ * radiogroups
+ * help-blocks
+ * `.has-error` validation class
+* support for IE8 (needs more testing)
+
+## Compatibility issues:
+
+"choices" were renamed "options" and is not an array, but an object with key-value pairs
+selectmultiple2 is not implemented
 
 ## Example
 
-http://www.bergmiller.de/formform_demo.html
+no online example yet, in progress
 
 ## Dependencies
 
@@ -34,13 +50,9 @@ fields = [
 	}
 ];
 
-form = FormForm( $('form'), fields );
+form = new FormForm( $('form'), fields );
 form.render();
 ```
-
-## Automatic form generation with Django
-
-Subclass JsModelForm and access the property json_form_fields on an instance.
 
 ## Options
 
