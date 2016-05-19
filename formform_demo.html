@@ -37,21 +37,6 @@
 		},
 		{
 			"type": "button",
-			"label": "Primary",
-			"classes": "btn-primary"
-		},
-		{
-			"type": "button",
-			"label": "Info",
-			"classes": "btn-info"
-		},
-		{
-			"type": "button",
-			"label": "Success",
-			"classes": "btn-success",
-		},
-		{
-			"type": "button",
 			"label": "Button dropdown",
 			"dropdown":
 			{ 
@@ -121,11 +106,11 @@
 			"type": "radiogroup",
 			"name": "radiogrp",
 			"value": "no",
-			"label": "A radiobutton group (with additions, an experimental feature)",
+			"label": "A radiobutton group (with ‘additions’, an experimental feature)",
 			"options":
 			{
-				"no": "Yes, option 1, with 1 additional field",
-				"yes": "No, option 2, with 2 additional fields"
+				"no": "No, option 1, with 1 additional field",
+				"yes": "Yes, option 2, with 2 additional fields"
 			}
 		},
 		{
@@ -201,9 +186,19 @@
 			}
 		},
 		{
+			"type": "button",
+			"label": "Button",
+			"classes": "btn-primary"
+		},
+		{
+			"type": "button",
+			"label": "Reset",
+			"classes": "btn-danger"
+		},
+		{
 			"type": "submit",
-			"label": "Search",
-			"classes": "btn-default",
+			"label": "Submit",
+			"classes": "btn-success",
 			"icon": "search",
 			"id": "test_id",
 			"name": "test_name"
@@ -235,20 +230,20 @@
 		
 	} );
 	
-	var form_elem = null;
+	var form_elem1 = null;
 	var form_elem2 = null;
 	
 	function renderForm( orientation, addcol1 )
 	{
 	
-		if ( ! form_elem ) form_elem = $('#testform');
+		if ( ! form_elem1 ) form_elem1 = $('#testform');
 		if ( ! form_elem2 ) form_elem2 = $('#testform2');
 		
-		if ( form_elem.length )
+		if ( form_elem1.length )
 		{
-			form_elem.empty();
-			if ( orientation == 'h' ) form_elem.addClass( 'form-horizontal' );
-			else form_elem.removeClass( 'form-horizontal' );
+			form_elem1.empty();
+			if ( orientation == 'h' ) form_elem1.addClass( 'form-horizontal' );
+			else form_elem1.removeClass( 'form-horizontal' );
 
 			var col1 = Math.min( 9, Math.max( 2, parseInt( $( '#col1' ).text() ) ) );
 			if ( addcol1 )
@@ -258,7 +253,7 @@
 			}
 			
 			// create a FormForm instance
-			var form = new FormForm( form_elem, input );
+			var form = new FormForm( form_elem1, input );
 			
 			// (optionally) set the column widths (for horizontal forms)
 			form.col1 = col1;

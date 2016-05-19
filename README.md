@@ -6,7 +6,7 @@ This is a complete rewrite of [cbergmiller's formform](https://github.com/cbergm
 
 * dependency on underscore.js was entirely removed (hence the rewrite)
 * support was added for:
- * addons
+ * addons (not all of them, yet)
  * dropdowns
  * radiogroups
  * help-blocks
@@ -33,6 +33,9 @@ no online example yet, but the formform_demo.html demo file will show what is po
 ## Usage
 
 ```javascript
+
+/*assuming there are two `<form>` elements 
+with `id="myform1"` and `id="myform2"` in your HTML*/
 
 var form1_input = [
         {
@@ -235,8 +238,8 @@ var form2_input = [
         }
     ];
 	
-var form = new FormForm( $('myform1'), form1_input );
-form.render();
+var form1 = new FormForm( $('myform1'), form1_input );
+form1.render();
 
 var form2 = new FormForm( $('myform2'), form2_input );
 form2.render();
@@ -246,10 +249,14 @@ form2.render();
 ## To do/wishlist
 
 * Improve the file input, which was taken from [Cory LaViska’s example](http://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3/) but is semantically invalid (there should not be an `<input type="file">` within a `<button>`).
+* Supply a minified version
+* Make IDs mandatory for all elements by changing the input format from an array to a key-value object, where the key designates the ID for the resulting element.
+* other validation classes (`success`, `danger`, etc.)
+* textual addons
 
 ## Options
 
-See formform_demo.html for all currently supported options.
+See `formform_demo.html` for all currently supported options.
 
 ### Horizontal forms
 
