@@ -1,3 +1,9 @@
+/* zmip Bootstrap formform v0.1
+A JSON to Bootstrap 3 form generator based on the work of https://github.com/cbergmiller
+
+https://github.com/zmip/bootstrap-formform
+*/
+
 var FormForm = (function () {
 
 	function FormForm( parentForm, formData )
@@ -19,7 +25,7 @@ var FormForm = (function () {
 		
 		if ( type == 'select' ) return new ElementSelect( itemData );
 		else if ( type == 'textarea' ) return new ElementTextarea( itemData );
-		else if ( type in { 'button':0, 'submit':0 } ) return new ElementButton( itemData );
+		else if ( type in { 'button':0, 'submit':0, 'reset':0 } ) return new ElementButton( itemData );
 		else if ( type == 'static' ) return new ElementStatic( itemData );
 		else if ( type == 'radiogroup' ) return new ElementRadiogroup( itemData );
 		else if ( type == 'file' ) return new ElementFile( itemData );
@@ -320,11 +326,11 @@ var FormForm = (function () {
 	{
 		if ( ! this.itemData.type ) this.elem = $('<input type="text">');
 		else this.elem = $('<input type="'+this.itemData.type+'">');
-		
-		// set value
+
+		// set value (use 'undefined' check here to allow for falsy values, like 0)
 		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
-				
-		// create addons/group
+		
+		// create (optional) addons and enclosing group
 		if ( this.itemData.addons && this.elem.attr( 'type' ) == 'text' ) return this.createAddons();
 		else return this.createGroup();
 	}
@@ -379,7 +385,7 @@ var FormForm = (function () {
 		} );
 		this.elem.append( options );
 		
-		// set value
+		// set value (use 'undefined' check here to allow for falsy values, like 0)
 		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
 		
 		return this.createGroup();
@@ -457,9 +463,9 @@ var FormForm = (function () {
 
 	ElementTextarea.prototype.render = function()
 	{
-		// add value
+		// set value (use 'undefined' check here to allow for falsy values, like 0)
 		if ( typeof this.itemData.value != 'undefined' ) this.elem.text( this.itemData.value );
-
+		
 		return this.createGroup();
 	}
 
@@ -480,7 +486,7 @@ var FormForm = (function () {
 
 	ElementStatic.prototype.render = function()
 	{
-		// add value
+		// set value (use 'undefined' check here to allow for falsy values, like 0)
 		if ( typeof this.itemData.value != 'undefined' ) this.elem.text( this.itemData.value );
 		
 		var grp = this.createGroup();
@@ -572,8 +578,8 @@ var FormForm = (function () {
 	{
 		// add attributes
 		this.applyAttributes();
-		
-		// set value
+
+		// set value (use 'undefined' check here to allow for falsy values, like 0)
 		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
 
 		return this.elem;
