@@ -175,7 +175,7 @@ var FormForm = (function () {
 		this.classes = ['form-control'];
 		
 		// determine ID
-		this.id = ( 'id' in itemData ) ? itemData.id : ( itemData.name ? itemData.name : ( 'id_'+FormForm.prototype.unique_id++ ) );
+		this.id = itemData.id ? itemData.id : ( itemData.name ? itemData.name : ( 'id_'+FormForm.prototype.unique_id++ ) );
 		this.name = itemData.name ? itemData.name : this.id;
 		
 		// create default attributes
@@ -222,7 +222,7 @@ var FormForm = (function () {
 		
 		// create help-block
 		var help_block = $('<span>' )
-			.text( this.itemData.error ? this.itemData.error : this.itemData[ 'help-block' ] ? this.itemData[ 'help-block' ] : '' )
+			.html( this.itemData.error ? this.itemData.error : this.itemData[ 'help-block' ] ? this.itemData[ 'help-block' ] : '' )
 			.addClass( 'help-block' );
 		
 		// add element to group
@@ -331,7 +331,23 @@ var FormForm = (function () {
 		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
 		
 		// create (optional) addons and enclosing group
-		if ( this.itemData.addons && this.elem.attr( 'type' ) == 'text' ) return this.createAddons();
+		if ( this.itemData.addons && this.elem.attr( 'type' ) in {
+			text:0,
+			password:0,
+			datetime:0,
+			'datetime-local':0,
+			date:0,
+			month:0,
+			time:0,
+			week:0,
+			number:0,
+			email:0,
+			url:0,
+			search:0,
+			tel:0,
+			color:0
+			}  ) return this.createAddons();
+		
 		else return this.createGroup();
 	}
 	
