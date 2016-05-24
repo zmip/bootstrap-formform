@@ -331,7 +331,22 @@ var FormForm = (function () {
 		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
 		
 		// create (optional) addons and enclosing group
-		if ( this.itemData.addons && this.elem.attr( 'type' ) == 'text' ) return this.createAddons();
+		if ( this.itemData.addons && this.elem.attr( 'type' ) in {
+			text:0,
+			password:0,
+			datetime:0,
+			'datetime-local':0,
+			date:0,
+			month:0,
+			time:0,
+			week:0,
+			number:0,
+			email:0,
+			url:0,
+			search:0,
+			tel:0,
+			color:0
+			}  ) return this.createAddons();
 		else return this.createGroup();
 	}
 	
