@@ -175,7 +175,7 @@ var FormForm = (function () {
 		this.classes = ['form-control'];
 		
 		// determine ID
-		this.id = ( 'id' in itemData ) ? itemData.id : ( itemData.name ? itemData.name : ( 'id_'+FormForm.prototype.unique_id++ ) );
+		this.id = itemData.id ? itemData.id : ( itemData.name ? itemData.name : ( 'id_'+FormForm.prototype.unique_id++ ) );
 		this.name = itemData.name ? itemData.name : this.id;
 		
 		// create default attributes
