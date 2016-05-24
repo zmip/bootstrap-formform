@@ -289,7 +289,7 @@
 
 		{
 			"type": "text",
-			"name": "withaddon2",
+			"name": "withaddon3",
 			"label": "With right-hand button and dropdown addon",
 			"help-block": "Help-block: note that the alignment of the dropdown itself is adjusted",
 			"addons": 
@@ -471,6 +471,13 @@
 			
 			// render
 			form.render();
+			
+			// add code
+			$.each(input, function(i,item){
+				$('#'+item.name).closest('.form-group')
+					.append($('<pre>')
+						.text(JSON.stringify(item, null, '\t')))
+			});
 		}
 		
 		if ( form_elem2.length )
