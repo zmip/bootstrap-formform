@@ -222,7 +222,7 @@ var FormForm = (function () {
 		
 		// create help-block
 		var help_block = $('<span>' )
-			.text( this.itemData.error ? this.itemData.error : this.itemData[ 'help-block' ] ? this.itemData[ 'help-block' ] : '' )
+			.html( this.itemData.error ? this.itemData.error : this.itemData[ 'help-block' ] ? this.itemData[ 'help-block' ] : '' )
 			.addClass( 'help-block' );
 		
 		// add element to group
