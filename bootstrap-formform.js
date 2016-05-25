@@ -25,29 +25,12 @@ var FormForm = (function () {
 		
 		if ( type == 'select' ) return new ElementSelect( itemData );
 		else if ( type == 'textarea' ) return new ElementTextarea( itemData );
-		else if ( this.isButton(type) ) return new ElementButton( itemData );
+		else if ( isButton(type) ) return new ElementButton( itemData );
 		else if ( type == 'static' ) return new ElementStatic( itemData );
 		else if ( type == 'radiogroup' ) return new ElementRadiogroup( itemData );
 		else if ( type == 'file' ) return new ElementFile( itemData );
 		else if ( type == 'hidden' ) return new ElementHidden( itemData );
-		else if ( type in {
-			text:0,
-			password:0,
-			datetime:0,
-			'datetime-local':0,
-			date:0,
-			month:0,
-			time:0,
-			week:0,
-			number:0,
-			email:0,
-			url:0,
-			search:0,
-			tel:0,
-			color:0,
-			checkbox:0,
-			radio:0
-			} ) return new Element( itemData );
+		else if ( isTextInput(type)  ) return new Element( itemData );
 		
 		if ( ! type ) return new Element( itemData );
 		else throw new Error( 'unknown type: ' + itemData.type );
@@ -71,7 +54,7 @@ var FormForm = (function () {
 			var item = self.createItem( itemData ).render();
 			
 			// filter out any buttons on the form root (with added whitespace for proper spacing)
-			if ( formform.isButton(itemData.type))
+			if ( isButton(itemData.type))
 			{
 				if ( itemData.position == 'right' ) btnsAlignRight = ' text-right';
 				buttons.push( item, "\n" );
@@ -167,7 +150,31 @@ var FormForm = (function () {
 	
 	// ---------------------------------
 
-	FormForm.prototype.isButton = function(type)
+	var isTextInput = function(type)
+	{
+		return type in {
+			text:0,
+			password:0,
+			datetime:0,
+			'datetime-local':0,
+			date:0,
+			month:0,
+			time:0,
+			week:0,
+			number:0,
+			email:0,
+			url:0,
+			search:0,
+			tel:0,
+			color:0,
+			checkbox:0,
+			radio:0
+		};
+	}
+	
+	// ---------------------------------
+
+	var isButton = function(type)
 	{
 		return type in {button:0, reset:0, submit:0, menu:0};
 	}
@@ -340,22 +347,7 @@ var FormForm = (function () {
 		if ( typeof this.itemData.value != 'undefined' ) this.elem.val( this.itemData.value );
 		
 		// create (optional) addons and enclosing group
-		if ( this.itemData.addons && this.elem.attr( 'type' ) in {
-			text:0,
-			password:0,
-			datetime:0,
-			'datetime-local':0,
-			date:0,
-			month:0,
-			time:0,
-			week:0,
-			number:0,
-			email:0,
-			url:0,
-			search:0,
-			tel:0,
-			color:0
-			}  ) return this.createAddons();
+		if ( this.itemData.addons && isTextInput( this.elem.attr( 'type' ) ) ) return this.createAddons();
 		else return this.createGroup();
 	}
 	
