@@ -25,7 +25,7 @@ var FormForm = (function () {
 		
 		if ( type == 'select' ) return new ElementSelect( itemData );
 		else if ( type == 'textarea' ) return new ElementTextarea( itemData );
-		else if ( type in { 'button':0, 'submit':0, 'reset':0 } ) return new ElementButton( itemData );
+		else if ( this.isButton(type) ) return new ElementButton( itemData );
 		else if ( type == 'static' ) return new ElementStatic( itemData );
 		else if ( type == 'radiogroup' ) return new ElementRadiogroup( itemData );
 		else if ( type == 'file' ) return new ElementFile( itemData );
@@ -61,6 +61,7 @@ var FormForm = (function () {
 		var self = this; // will ECMA 6 finally fix this crap?
 		var buttons = [];
 		var btnsAlignRight = '';
+		var formform = this;
 		
 		Element.prototype.isHorizontal = this.isHorizontal ? [this.col1, this.col2] : null;
 		
@@ -70,7 +71,7 @@ var FormForm = (function () {
 			var item = self.createItem( itemData ).render();
 			
 			// filter out any buttons on the form root (with added whitespace for proper spacing)
-			if ( itemData.type == 'submit' || itemData.type == 'button' )
+			if ( formform.isButton(itemData.type))
 			{
 				if ( itemData.position == 'right' ) btnsAlignRight = ' text-right';
 				buttons.push( item, "\n" );
@@ -163,6 +164,14 @@ var FormForm = (function () {
 			} );
 		}	
 	}
+	
+	// ---------------------------------
+
+	FormForm.prototype.isButton = function(type)
+	{
+		return type in {button:0, reset:0, submit:0, menu:0};
+	}
+
 	
 	// -----------------------------------------------------------------------------
 	// FormForm Elements
