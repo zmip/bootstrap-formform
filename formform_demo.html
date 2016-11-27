@@ -78,6 +78,158 @@
 				]
 		},
 		{
+			"type": "text",
+			"name": "withaddon3",
+			"label": "With right-hand button and dropdown addon",
+			"help-block": "Help-block: note that the alignment of the dropdown itself is adjusted",
+			"addons": 
+				[
+					{
+						"type": "button",
+						"position": "right",
+						"label": "OK",
+					},
+					{
+						"type": "button",
+						"position": "right",
+						"label": "",
+						"dropdown":
+						{
+							"id_one1": "Addon dropdown 1",
+							"id_two1": "Addon dropdown 2",
+							"id_three1": "Addon dropdown 3"
+						}
+					}
+				]
+		},
+		{
+			"type": "checkboxgroup",
+			"label": "A checkbox group",
+			"options":
+			[
+				{
+				"name": "checkbox1",
+				"label": "Option 1",
+				"value": 1,
+				"checked": 1
+				},
+				{
+				"name": "checkbox2",
+				"label": "Option 2",
+				"value": 1
+				}
+			]
+		},
+		{
+			"type": "radiogroup",
+			"name": "radiogrp",
+			"value": "no",
+			"label": "A radiobutton group (with ‘additions’, an experimental feature)",
+			"options":
+			{
+				"no": "No, option 1, with 1 additional field",
+				"yes": "Yes, option 2, with 2 additional fields"
+			}
+		},
+		{
+			"type": "text",
+			"name": "addition1",
+			"id": "addition1",
+			"classes": "addition",
+			"data": {"for": "radiogrp_no"},
+			"label": "What is the cause of this?",
+			"value": ""
+		},
+		{
+			"type": "text",
+			"name": "addition2",
+			"id": "addition2",
+			"classes": "addition",
+			"data": {"for": "radiogrp_yes"},
+			"label": "How many times in the past six months?",
+			"value": ""
+		},
+		{
+			"type": "text",
+			"name": "addition3",
+			"id": "addition3",
+			"classes": "addition",
+			"data": {"for": "radiogrp_yes"},
+			"label": "Who is responsible for this?",
+			"value": ""
+		},
+		{
+			"type": "text",
+			"name": "withValue",
+			"label": "With value and error",
+			"value": "This is a value with <unsafe> \"characters\" & such",
+			"error": "This is the error message"
+		},
+		{
+			"type": "password",
+			"name": "password",
+			"label": "Password label with <unsafe> \"characters\""
+		},
+		{
+			"type": "textarea",
+			"name": "my_textarea",
+			"label": "A textarea with placeholder and value",
+			"value": "Remove this text to see the placeholder",
+			"placeholder": "This is a placeholder"
+		},
+		{
+			"type": "file",
+			"name": "file_upload",
+			"label": "A file input",
+			"btnlabel": "Choose a file...",
+			"icon": "file",
+			"classes": "btn-primary"
+		},
+		{
+			"type": "static",
+			"name": "static",
+			"label": "Bootstrap 'static' control",
+			"value": "This is static text"
+		},
+		{
+			"type": "select",
+			"name": "fruit",
+			"label": "Select input",
+			"value": "two",
+			"options": 
+			{ 
+				"one": "Option 1",
+				"two": "This is the selected option",
+				"three": "Option 3"
+			}
+		},
+		{
+			"type": "button",
+			"label": "Button",
+			"classes": "btn-primary"
+		},
+		{
+			"type": "button",
+			"label": "Reset",
+			"classes": "btn-danger"
+		},
+		{
+			"type": "submit",
+			"label": "Submit",
+			"classes": "btn-success",
+			"icon": "search",
+			"id": "test_id",
+			"name": "test_name"
+		},
+		];
+
+		input2 = [
+		{
+			"name": "username2",
+			"label": "This is form 2",
+			"placeholder": "This is a placeholder"
+		},
+		{
 			"type": "password",
 			"name": "withaddon-password",
 			"label": "Password with right-hand button addon of class 'btn-success'",
@@ -92,8 +244,6 @@
 				}
 			]
 		},
-
-
 		{
 			"type": "month",
 			"name": "withaddon-month",
@@ -285,142 +435,6 @@
 				}
 			]
 		},
-
-
-		{
-			"type": "text",
-			"name": "withaddon2",
-			"label": "With right-hand button and dropdown addon",
-			"help-block": "Help-block: note that the alignment of the dropdown itself is adjusted",
-			"addons": 
-				[
-					{
-						"type": "button",
-						"position": "right",
-						"label": "OK",
-					},
-					{
-						"type": "button",
-						"position": "right",
-						"label": "",
-						"dropdown":
-						{
-							"id_one1": "Addon dropdown 1",
-							"id_two1": "Addon dropdown 2",
-							"id_three1": "Addon dropdown 3"
-						}
-					}
-				]
-		},
-		{
-			"type": "radiogroup",
-			"name": "radiogrp",
-			"value": "no",
-			"label": "A radiobutton group (with ‘additions’, an experimental feature)",
-			"options":
-			{
-				"no": "No, option 1, with 1 additional field",
-				"yes": "Yes, option 2, with 2 additional fields"
-			}
-		},
-		{
-			"type": "text",
-			"name": "addition1",
-			"id": "addition1",
-			"classes": "addition",
-			"data": {"for": "radiogrp_no"},
-			"label": "What is the cause of this?",
-			"value": ""
-		},
-		{
-			"type": "text",
-			"name": "addition2",
-			"id": "addition2",
-			"classes": "addition",
-			"data": {"for": "radiogrp_yes"},
-			"label": "How many times in the past six months?",
-			"value": ""
-		},
-		{
-			"type": "text",
-			"name": "addition3",
-			"id": "addition3",
-			"classes": "addition",
-			"data": {"for": "radiogrp_yes"},
-			"label": "Who is responsible for this?",
-			"value": ""
-		},
-		{
-			"type": "text",
-			"name": "withValue",
-			"label": "With value and error",
-			"value": "This is a value with <unsafe> \"characters\" & such",
-			"error": "This is the error message"
-		},
-		{
-			"type": "password",
-			"name": "password",
-			"label": "Password label with <unsafe> \"characters\""
-		},
-		{
-			"type": "textarea",
-			"name": "my_textarea",
-			"label": "A textarea with placeholder and value",
-			"value": "Remove this text to see the placeholder",
-			"placeholder": "This is a placeholder"
-		},
-		{
-			"type": "file",
-			"name": "file_upload",
-			"label": "A file input",
-			"btnlabel": "Choose a file...",
-			"icon": "file",
-			"classes": "btn-primary"
-		},
-		{
-			"type": "static",
-			"name": "static",
-			"label": "Bootstrap 'static' control",
-			"value": "This is static text"
-		},
-		{
-			"type": "select",
-			"name": "fruit",
-			"label": "Select input",
-			"value": "two",
-			"options": 
-			{ 
-				"one": "Option 1",
-				"two": "This is the selected option",
-				"three": "Option 3"
-			}
-		},
-		{
-			"type": "button",
-			"label": "Button",
-			"classes": "btn-primary"
-		},
-		{
-			"type": "button",
-			"label": "Reset",
-			"classes": "btn-danger"
-		},
-		{
-			"type": "submit",
-			"label": "Submit",
-			"classes": "btn-success",
-			"icon": "search",
-			"id": "test_id",
-			"name": "test_name"
-		}
-		];
-
-		input2 = [
-		{
-			"name": "username",
-			"label": "This is form 2",
-			"placeholder": "This is a placeholder"
-		},
 		{
 			"type": "button",
 			"label": "Cancel",
@@ -445,9 +459,7 @@
 	
 	function renderForm( orientation, addcol1 )
 	{
-	
 		if ( ! form_elem1 ) form_elem1 = $('#testform');
-		if ( ! form_elem2 ) form_elem2 = $('#testform2');
 		
 		if ( form_elem1.length )
 		{
@@ -472,6 +484,8 @@
 			// render
 			form.render();
 		}
+
+		if ( ! form_elem2 ) form_elem2 = $('#testform2');
 		
 		if ( form_elem2.length )
 		{
@@ -479,8 +493,26 @@
 			var form2 = new FormForm( form_elem2, input2 );
 			form2.render();
 		}
+
+		// add example code snippets
+		$.each( [input, input2], function(f, forminput){
+			
+			$.each(forminput, function(i,item){
+				$('#'+item.name).closest('.form-group')
+					.append($('<pre class="examplecode hidden">')
+						.text(JSON.stringify(item, null, '\t')))
+			});
+
+		});
+
 	}
 	
+	function toggleSnippets()
+	{
+		$('.examplecode').toggleClass('hidden');
+		return false;
+	}
+
 </script>
 
 <style>
@@ -504,11 +536,18 @@
 			<button type="button" class="btn btn-default btn-sm" onclick="return renderForm('h', -1)"><span class="glyphicon glyphicon-triangle-left"></span></button></form>
 			<span id="col1">4</span>
 			<button type="button" class="btn btn-default btn-sm" onclick="return renderForm('h', 1)"><span class="glyphicon glyphicon-triangle-right"></span></button></form>
+			<button type="button" class="btn btn-default btn-sm" onclick="return toggleSnippets()"><span class="glyphicon glyphicon-eye-open"></span> toggle code snippets</button></form>
 		</div>
+
+		<hr>
 
 		<div class="row">
 			<h1>Bootstrap FormForm2 demo</h1>
+
+			<h3>Form 1</h3>
 			<form id="testform" action="#" method="post"></form>
+			<hr>
+			<h3>Form 2</h3>
 			<form id="testform2" action="#" method="post"></form>
 		</div>
 

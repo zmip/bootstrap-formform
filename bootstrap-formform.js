@@ -29,6 +29,7 @@ var FormForm = (function () {
 		else if ( type == 'static' ) return new ElementStatic( itemData );
 		else if ( type == 'radiogroup' ) return new ElementRadiogroup( itemData );
 		else if ( type == 'file' ) return new ElementFile( itemData );
+		else if ( type == 'checkboxgroup' ) return new ElementCheckboxgroup( itemData );
 		else if ( type == 'hidden' ) return new ElementHidden( itemData );
 		else if ( type in {
 			text:0,
@@ -55,7 +56,7 @@ var FormForm = (function () {
 	
 	// -----------------------------------------------------------------------------
 	
-	FormForm.prototype.render = function ()
+	FormForm.prototype.render = function( formValues )
 	{
 		var i = 1000;
 		var self = this; // will ECMA 6 finally fix this crap?
@@ -66,6 +67,8 @@ var FormForm = (function () {
 		
 		$.each( this.formData, function( index, itemData )
 		{
+			if ( formValues && itemData.name in formValues ) itemData.value = formValues[ itemData.name ];
+			
 			// create and render
 			var item = self.createItem( itemData ).render();
 			
@@ -207,13 +210,18 @@ var FormForm = (function () {
 	{
 		var group_elements = [];
 
-		// add label (only on radiogroup a label is optional)
-		if ( this.itemData.label || this.itemData.type != 'radiogroup' )
+		// add label (only on radiogroup and checkboxgroup a label is optional)
+		var label = null;
+		if ( this.itemData.label || this.itemData.type != 'radiogroup' || this.itemData.type != 'checkboxgroup' )
 		{
-			var label = $('<label>')
+			label = $('<label>')
 					.text( this.itemData.label ? this.itemData.label : 'always add a label' )
-					.attr( 'for', this.attributes.id )
 					.addClass( 'control-label' + ( this.isHorizontal ? ' col-sm-'+this.isHorizontal[0] : '' ) );
+		}
+
+		if ( label )
+		{
+			if ( ['checkboxgroup', 'radiogroup', 'file'].indexOf( this.itemData.type ) === -1 ) label.attr( 'for', this.attributes.id );
 			group_elements.push( label );
 		}
 		
@@ -301,14 +309,14 @@ var FormForm = (function () {
 			// create enclosing 'input-group'
 			var grp = $('<div>').addClass( 'input-group' );
 			
-			// enclose lefthand addons in 'input-group-btn' span and append
-			if ( addonsLeft.length ) grp.append( $('<span>').addClass( 'input-group-btn' ).append( addonsLeft ) );
+			// enclose lefthand addons in 'input-group-btn' div and append
+			if ( addonsLeft.length ) grp.append( $('<div>').addClass( 'input-group-btn' ).append( addonsLeft ) );
 			
 			// append this.elem
 			grp.append( this.elem );
 
-			// enclose righthand addons in 'input-group-btn' span and append
-			if ( addonsRight.length ) grp.append( $('<span>').addClass( 'input-group-btn' ).append( addonsRight ) );
+			// enclose righthand addons in 'input-group-btn' div and append
+			if ( addonsRight.length ) grp.append( $('<div>').addClass( 'input-group-btn' ).append( addonsRight ) );
 			
 			// change this.elem to be the enclosing 'input-group'
 			this.elem = grp;
@@ -533,46 +541,94 @@ var FormForm = (function () {
 		// - needs additional JS to show the file name
 		
 		// create the button from ElementButton with added 'btn-file' class
-		var tmp_data = { 'label': ( this.itemData.btnlabel ? this.itemData.btnlabel : 'set "btnlabel" prop' ) };
-		if ( ! this.itemData.classes ) tmp_data.classes = 'btn-default';
-		else tmp_data.classes = this.itemData.classes;
-		tmp_data.classes += ' btn-file';
-		tmp_data.icon = this.itemData.icon;
+ 		var tmp_data = { 'label': ( this.itemData.btnlabel ? this.itemData.btnlabel : 'set "btnlabel" prop' ) };
+// 		if ( ! this.itemData.classes ) tmp_data.classes = 'btn-default';
+// 		else tmp_data.classes = this.itemData.classes;
+// 		tmp_data.classes += ' btn-file';
+// 		tmp_data.icon = this.itemData.icon;
+// 		var btn = new ElementButton( tmp_data ).render();
+// 		
+// 		// apply some inline styles to hide the original file input
+// 		// not very elegant, but removes the requirement of additonal CSS
+// 		btn.css( {
+// 			position: 'relative',
+// 			overflow: 'hidden'
+// 			} );
+// 		
+// 		// append the file input
+// 		btn.append( $('<input type="file">').css( {
+// 			position: 'absolute',
+// 			top: 0,
+// 			right: 0,
+// 			'min-width': '100%',
+// 			'min-height': '100%',
+// 			'font-size': '100px',
+// 			'text-align': 'right',
+// 			filter: 'alpha(opacity=0)',
+// 			opacity: 0,
+// 			outline: 'none',
+// 			background: 'none',
+// 			cursor: 'inherit',
+// 			display: 'block'
+// 		} ) );
+// 		
+// 		//<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+// 		
+// 		this.elem = $('<div>')
+// 			.addClass( 'input-group' )
+// 			.append( [	$('<label>').addClass( 'input-group-btn' ).append( btn ),
+// 						$('<input type="text">').addClass( 'form-control' ).attr( 'readonly', '' ) ] );
+		
 		var btn = new ElementButton( tmp_data ).render();
-		
-		// apply some inline styles to hide the original file input
-		// not very elegant, but removes the requirement of additonal CSS
-		btn.css( {
-			position: 'relative',
-			overflow: 'hidden'
-			} );
-		
-		// append the file input
-		btn.append( $('<input type="file">').css( {
-			position: 'absolute',
-			top: 0,
-			right: 0,
-			'min-width': '100%',
-			'min-height': '100%',
-			'font-size': '100px',
-			'text-align': 'right',
-			filter: 'alpha(opacity=0)',
-			opacity: 0,
-			outline: 'none',
-			background: 'none',
-			cursor: 'inherit',
-			display: 'block'
-		} ) );
-		
-		//<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 		
 		this.elem = $('<div>')
 			.addClass( 'input-group' )
 			.append( [	$('<label>').addClass( 'input-group-btn' ).append( btn ),
 						$('<input type="text">').addClass( 'form-control' ).attr( 'readonly', '' ) ] );
-
+		
 		return this.createGroup( true );
 
+	}
+	
+	// ----------------------------------------------------------------------------- checkbox
+
+	function ElementCheckboxgroup( itemData )
+	{
+		Element.call( this, itemData ); // call parent constructor
+
+		// overrides
+		this.elem = $('<div>');
+		this.classes = ['checkbox-group']; // this is not a Bootstrap class
+	}
+
+	ElementCheckboxgroup.prototype = new Tmp();
+
+	// ---------------------------------
+
+	ElementCheckboxgroup.prototype.render = function()
+	{
+		var options = [];
+		var itemData = this.itemData;
+		
+		$.each( itemData.options, function( ign, checkboxData ) {
+			
+			var input_elem = $( '<input type="checkbox">' )
+				.attr( 'name', checkboxData.name )
+				.attr( 'id', checkboxData.name )
+				.val( checkboxData.value );
+			if ( checkboxData.checked ) input_elem.prop( 'checked', true );
+			options.push( $('<div>')
+				.addClass( 'checkbox' )
+				.append( $('<label>')
+					.text( checkboxData.label )
+					.prepend( input_elem ) ) );
+			
+		} );
+
+		// add classes
+		this.elem.addClass( this.classes.join( ' ' ) );
+
+		return this.createGroup( this.elem.append( options ), true );
 	}
 	
 	// ----------------------------------------------------------------------------- hidden
